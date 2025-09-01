@@ -1,0 +1,15 @@
+#forward-btns button{
+    font-size: 15px;
+    padding: 14px 15px;
+    font-weight: 550;
+    color: white;
+    background-color: #1111c4;
+    border:none;
+    border-radius: 11px;
+    transition: transform 0.7s ease
+}
+
+#forward-btns button:hover{
+    transform: translateY(-5px); 
+    cursor: pointer;  
+}
