@@ -9,7 +9,9 @@
       href="https://fonts.googleapis.com/css2?family=Forum&family=Handlee&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&family=Patrick+Hand&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
       rel="stylesheet"
     />
-    <link rel="icon" type="image/png" href="images/g1.png" />
+     <link rel="icon" type="image/png" href="images/g1.png" />
+    
+    </style>
   </head>
   <body>
     <nav id="navbar">
@@ -19,35 +21,53 @@
       <li><a href="">Appointment</a></li>
     </nav>
     <div id="login-signup">
-      <button>Login/Sign up</button>
+  <button onclick="window.location.href='aagman/loginpage.html'">
+    Login / Sign Up
+  </button>
+</div>
+
+<div id="user-profile" style="display:none; justify-content: right; margin: -65px 20px 0 0;">
+  <div class="profile-dropdown">
+    <img src="images/user.png" alt="User Profile" 
+         style="width:30px; height:30px; border-radius:50%; cursor:pointer;">
+    <div class="dropdown-content">
+      <button onclick="logout()">Logout</button>
     </div>
+  </div>
+</div>
 
     <div id="search-box">
-      <input type="search" name="" id="" placeholder="Location">
-        <input type="text" placeholder="Search for doctors">
-       
-     
+      <input type="search" id="location" placeholder="Location" />
+      <input type="text" placeholder="Search for doctors" />
     </div>
-    
+
     <section id="landing-page">
       <div id="forward-btns">
         <div class="landing-btn">
-          <img src="images/demo.png" alt="">
-        <button>Book a demo</button>
+          <img src="images/demo.png" alt="" />
+          <button>Book a demo</button>
         </div>
         <div class="landing-btn">
-          <img src="images/queue.png" alt="">
+          <img src="images/queuepep.png" alt="" />
           <button>Check your Queue</button>
         </div>
-        <div id="landing-image">
-          <img src="images/landingimage.png" alt="">
-        </div>
-        
         
       </div>
-      
     </section>
-    
+
     
   </body>
+  <script>
+    window.onload = function () {
+  if (localStorage.getItem("loggedIn") === "true") {
+    document.getElementById("login-signup").style.display = "none";
+    document.getElementById("user-profile").style.display = "flex";
+  }
+};
+function logout() {
+  localStorage.removeItem("loggedIn");
+  document.getElementById("login-signup").style.display = "flex";
+  document.getElementById("user-profile").style.display = "none";
+};
+  </script>
 </html>
