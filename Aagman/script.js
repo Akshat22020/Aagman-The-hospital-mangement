@@ -10,7 +10,7 @@ loginForm.addEventListener("submit", (e) => {
 
   if (username === "admin" && password === "1234") {
     localStorage.setItem("loggedIn", "true");
-    window.location.href = "../index.html";
+    window.location.href = "user-dashboard.html";
   } 
   else {
     alert("Please enter correct username & password");
