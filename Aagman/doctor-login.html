@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Aagman - Doctor Login</title>
-
+  <link rel="icon" type="image/png" href="../images/g1.png" />
   <style>
     /* General Reset */
     * {
@@ -19,8 +19,8 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background: linear-gradient(135deg, #00b09b, #389bdd);
-      color: white;
+      background: aliceblue;
+      
       transition: all 0.6s ease;
     }
 
@@ -35,11 +35,9 @@
       animation: fadeIn 1.2s ease;
     }
 
-    .title {
-      font-size: 2.2rem;
+    .title img{
+      height: 2.8rem;
       margin-bottom: 0.5rem;
-      letter-spacing: 2px;
-      color: #cfc8af;
     }
 
     .subtitle {
@@ -58,9 +56,7 @@
       padding: 12px;
       border: none;
       outline: none;
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.2);
-      color: white;
+      border-radius: 8px;      
       font-size: 1rem;
     }
 
@@ -70,7 +66,7 @@
       left: 12px;
       transform: translateY(-50%);
       font-size: 0.9rem;
-      color: #ddd;
+      opacity: 0.4;
       pointer-events: none;
       transition: 0.3s ease;
     }
@@ -80,13 +76,14 @@
       top: -8px;
       left: 8px;
       font-size: 0.7rem;
-      color: #abe0ff;
+      
     }
 
     .btn {
       width: 100%;
       padding: 12px;
-      background: #134374;
+      background: #1111c4;
+      color: #fff;
       border: none;
       border-radius: 8px;
       font-size: 1rem;
@@ -96,9 +93,8 @@
     }
 
     .btn:hover {
-      background: #8a8ae4;
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(13, 5, 50, 0.5);
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(255, 221, 87, 0.5);
     }
 
     .extra-links {
@@ -131,7 +127,8 @@
 </head>
 <body>
   <div class="login-container">
-    <h1 class="title">Doctor's Login</h1>
+    <h1 class="title">
+      <img src="../images/g1.png" alt=""></h1>
     <p class="subtitle"></p>
 
     <form id="doctorLoginForm" class="login-form">

@@ -1,15 +1,47 @@
-#forward-btns button{
-    font-size: 15px;
-    padding: 14px 15px;
-    font-weight: 550;
-    color: white;
-    background-color: #1111c4;
-    border:none;
-    border-radius: 11px;
-    transition: transform 0.7s ease
-}
+"Aagman – Ab aspataal ki line se chhutkaara"
+(Now freedom from hospital queues)
 
-#forward-btns button:hover{
-    transform: translateY(-5px); 
-    cursor: pointer;  
-}
+"Aagman – Aapka samay, aapka swasthya"
+(Your time, your health)
+
+"Aagman – Sehat ke raaste ko asaan banaye"
+(Making the road to health easier)
+
+"Aagman – Doctor se milna ab hua aasaan"
+(Meeting your doctor is now simple)
+
+"Aagman – Sehat ki fikr, line ke bina"
+(Care for health, without the queue)
+
+"Aagman – Behtar seva, kam intezaar"
+(Better service, less waiting)
+
+"Aagman – Beemar ho ya vyast, ab intezaar se mukti"
+(Whether sick or busy, now freedom from waiting)
+
+"Aagman – Sehat aur suvidha, dono ek saath"
+(Health and convenience, both together)
+
+"Aagman – Aapki sehat ka asaan saathi"
+(Your easy partner in health)
+
+"Aagman – Aspataal ka safar, bina chinta ke"
+(Hospital visits, without worry)
+
+"Aagman – Kam samay, zyada dhyaan"
+(Less time, more care)
+
+"Aagman – Rogi aur doctor, dono ke liye aaram"
+(Comfort for both patients and doctors)
+
+"Aagman – Ab sehat ke liye line nahi, sirf care"
+(For health, no more queues — only care)
+
+"Aagman – Samay bachega, sehat badhegi"
+(Save time, improve health)
+
+"Aagman – Aapka sehat saathi, har kadam par"
+(Your health companion, at every step)
+
+"Aagman – Behtar seva, behtar sehat, bina intezaar"
+(Better service, better health, without waiting)
