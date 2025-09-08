@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Nearest Health Center</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    #map { height: 100vh; width: 100%; }
+  </style>
+</head>
+<body>
+  <h2 style="text-align:center;">🏥 Nearest Health Centers</h2>
+  <div id="map"></div>
+  
+  <script>
+    function initMap() {
+      const village = { lat: 25.5941, lng: 85.1376 }; // Patna demo
+      const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 12,
+        center: village,
+      });
+
+      const markers = [
+        { name: "PHC Village Health Center", lat: 25.6, lng: 85.15 },
+        { name: "Govt Hospital Patna", lat: 25.61, lng: 85.12 },
+      ];
+
+      markers.forEach(m => {
+        new google.maps.Marker({
+          position: { lat: m.lat, lng: m.lng },
+          map,
+          title: m.name
+        });
+      });
+    }
+  </script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
+</body>
+</html>

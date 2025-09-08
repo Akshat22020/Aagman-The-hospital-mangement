@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Offline Mode Demo</title>
+</head>
+<body>
+  <h2>🌐 Offline Health App</h2>
+  <p id="status"></p>
+
+  <script>
+    function updateOnlineStatus() {
+      const status = navigator.onLine ? "✅ You are Online" : "⚠️ You are Offline. Data will sync later.";
+      document.getElementById("status").textContent = status;
+    }
+
+    window.addEventListener('online', updateOnlineStatus);
+    window.addEventListener('offline', updateOnlineStatus);
+
+    updateOnlineStatus();
+  </script>
+</body>
+</html>

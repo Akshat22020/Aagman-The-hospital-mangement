@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aagman - Doctor Login</title>
+  <link rel="icon" type="image/png" href="../images/g1.png" />
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Trebuchet MS", Arial, sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #c6cfce, #ededf1);
+      color: white;
+      transition: all 0.6s ease;
+    }
+
+    .login-container {
+      background: rgba(61, 154, 221, 0.1);
+      padding: 2rem;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+      width: 350px;
+      text-align: center;
+      animation: fadeIn 1.2s ease;
+    }
+
+    .title img{
+      height: 2.8rem;
+      margin-bottom: 0.5rem;
+      letter-spacing: 2px;
+      color: #000000;
+    }
+
+    .subtitle {
+      margin-bottom: 2rem;
+      font-size: 0.9rem;
+      opacity: 0.85;
+    }
+
+    .input-group {
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      outline: none;
+      border-radius: 8px;
+      background: rgba(0, 0, 0, 0.2);
+      color: white;
+      font-size: 1rem;
+    }
+
+    .input-group label {
+      position: absolute;
+      top: 50%;
+      left: 12px;
+      transform: translateY(-50%);
+      font-size: 0.9rem;
+      opacity: 0.4;
+      pointer-events: none;
+      transition: 0.3s ease;
+    }
+
+    .input-group input:focus + label,
+    .input-group input:valid + label {
+      top: -8px;
+      left: 8px;
+      font-size: 0.7rem;
+      color: #dcd7e7;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 12px;
+      background: #4d58cb;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(13, 5, 50, 0.5);
+    }
+
+    .extra-links {
+      margin-top: 1rem;
+      font-size: 0.85rem;
+    }
+
+    .extra-links a {
+      color: #000000;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .extra-links a:hover {
+      color: #fff;
+    }
+
+    .error-message {
+      margin-top: 10px;
+      font-size: 0.85rem;
+      color: #ff6b6b;
+      display: none;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h1 class="title">
+      <img src="../images/g1.png" alt=""></h1>
+    <p class="subtitle"></p>
+
+    <form id="doctorLoginForm" class="login-form">
+      <div class="input-group">
+        <input type="text" id="doctorId" required>
+        <label for="doctorId">Doctor ID</label>
+      </div>
+
+      <div class="input-group">
+        <input type="password" id="password" required>
+        <label for="password">Password</label>
+      </div>
+
+      <button type="submit" class="btn">Login</button>
+      <p class="error-message" id="errorMessage"></p>
+    </form>
+
+    <div class="extra-links">
+      <a href="#">Forgot-Password?</a>
+      <br><br>
+      <a href="loginpage.html">Go back?</a>
+    </div>
+  </div>
+
+  <script>
+    const doctorForm = document.getElementById("doctorLoginForm");
+    const errorMessage = document.getElementById("errorMessage");
+
+    doctorForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const doctorId = document.getElementById("doctorId").value.trim();
+      const password = document.getElementById("password").value.trim();
+
+      if (doctorId === "" || password === "") {
+        showError("Please enter your Doctor ID and Password!");
+      } else if (doctorId !== "doc123" || password !== "pass123") {
+        showError("Invalid credentials. Try again!");
+      } else {
+        errorMessage.style.display = "none";
+        alert("Doctor Login Successful 👨‍⚕️ Welcome!");
+        // redirect to doctor dashboard
+        window.location.href = "doctor-dashboard.html";
+      }
+    });
+
+    function showError(msg) {
+      errorMessage.textContent = msg;
+      errorMessage.style.display = "block";
+    }
+  </script>
+</body>
+</html>

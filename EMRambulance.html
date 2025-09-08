@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emergency Volunteer Connect</title>
+  <style>
+    body { font-family: Arial; background: #f8f9fa; text-align: center; padding: 40px; }
+    button { background: red; color: white; padding: 15px; border: none; border-radius: 8px; font-size: 18px; cursor: pointer; }
+    button:hover { background: darkred; }
+    .result { margin-top: 20px; font-weight: bold; color: green; }
+  </style>
+</head>
+<body>
+  <h2>🚨 Emergency Volunteer Connect</h2>
+  <button onclick="alertVolunteer()">Call Volunteer</button>
+  <div class="result" id="resultBox"></div>
+
+  <script>
+    function alertVolunteer() {
+      const volunteers = ["Ravi Kumar - 2km away", "Sita Devi - 4km away", "Ajay Singh - 5km away"];
+      const selected = volunteers[Math.floor(Math.random()*volunteers.length)];
+      document.getElementById("resultBox").innerHTML = `✅ Nearest Volunteer Alerted: <b>${selected}</b>`;
+    }
+  </script>
+</body>
+</html>
