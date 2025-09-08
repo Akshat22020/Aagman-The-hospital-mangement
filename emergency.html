@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AAGMAN - Emergency Connect</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f5f6fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 14px;
+      width: 400px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    }
+    h1 {
+      color: #e84118;
+    }
+    button {
+      width: 90%;
+      padding: 14px;
+      margin-top: 15px;
+      border: none;
+      border-radius: 10px;
+      background: #e84118;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #c23616;
+    }
+    .queue {
+      margin-top: 20px;
+      padding: 15px;
+      background: #dcdde1;
+      border-radius: 8px;
+      display: none;
+      font-weight: bold;
+    }
+    .connected {
+      margin-top: 20px;
+      padding: 15px;
+      background: #4cd137;
+      border-radius: 8px;
+      display: none;
+      color: white;
+      font-weight: bold;
+      animation: blink 1s infinite;
+    }
+    @keyframes blink {
+      50% { opacity: 0.6; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>🚨 Emergency Connect</h1>
+  <p>Skip normal booking & connect instantly with available doctors</p>
+  <button onclick="startEmergency()">Start Emergency Mode</button>
+  <div class="queue" id="queueBox"></div>
+  <div class="connected" id="connectedBox">✅ Doctor Connected Instantly!</div>
+</div>
+
+<script>
+  function startEmergency() {
+    const queueBox = document.getElementById("queueBox");
+    const connectedBox = document.getElementById("connectedBox");
+
+    // Random queue size between 1-5
+    let patientsAhead = Math.floor(Math.random() * 5) + 1;
+
+    queueBox.style.display = "block";
+    connectedBox.style.display = "none";
+    queueBox.innerHTML = `⏳ Please wait... ${patientsAhead} patients ahead of you.`;
+
+    let interval = setInterval(() => {
+      if (patientsAhead > 0) {
+        patientsAhead--;
+        queueBox.innerHTML = `⏳ Please wait... ${patientsAhead} patients ahead of you.`;
+      } else {
+        clearInterval(interval);
+        queueBox.style.display = "none";
+        connectedBox.style.display = "block";
+      }
+    }, 1500); // 1.5 sec per patient
+  }
+</script>
+
+</body>
+</html>

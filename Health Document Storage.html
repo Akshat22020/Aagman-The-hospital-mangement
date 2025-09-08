@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AAGMAN - Digital Health Locker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f5f6fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 14px;
+      width: 500px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    }
+    h1 {
+      color: #0984e3;
+    }
+    input[type="file"] {
+      margin-top: 15px;
+      margin-bottom: 15px;
+    }
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      background: #0984e3;
+      color: white;
+      cursor: pointer;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #0652DD;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 20px;
+    }
+    li {
+      background: #dfe6e9;
+      padding: 10px;
+      margin: 5px 0;
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    a {
+      text-decoration: none;
+      color: #2d3436;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>📂 Digital Health Locker</h1>
+  <p>Upload & securely store your health documents</p>
+  
+  <input type="file" id="fileInput">
+  <button onclick="uploadFile()">Upload</button>
+  
+  <ul id="fileList"></ul>
+</div>
+
+<script>
+  let files = [];
+
+  function uploadFile() {
+    const fileInput = document.getElementById("fileInput");
+    const fileList = document.getElementById("fileList");
+
+    if (fileInput.files.length === 0) {
+      alert("Please select a file first!");
+      return;
+    }
+
+    let file = fileInput.files[0];
+    files.push(file);
+
+    // Clear input
+    fileInput.value = "";
+
+    // Update UI
+    renderFileList();
+  }
+
+  function renderFileList() {
+    const fileList = document.getElementById("fileList");
+    fileList.innerHTML = "";
+
+    files.forEach((file, index) => {
+      let li = document.createElement("li");
+
+      let fileName = document.createElement("span");
+      fileName.textContent = file.name;
+
+      let downloadLink = document.createElement("a");
+      downloadLink.href = URL.createObjectURL(file);
+      downloadLink.download = file.name;
+      downloadLink.textContent = "⬇️ Download";
+
+      li.appendChild(fileName);
+      li.appendChild(downloadLink);
+      fileList.appendChild(li);
+    });
+  }
+</script>
+
+</body>
+</html>

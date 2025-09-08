@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AAGMAN - Book Appointment</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f4f6f8;
+    }
+    header {
+      background: #0a3d62;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+    .container {
+      max-width: 600px;
+      margin: 30px auto;
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+    }
+    .doctor-info {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .doctor-info img {
+      width: 100px;
+      height: 100px;
+      border-radius: 10px;
+      margin-right: 15px;
+      object-fit: cover;
+    }
+    .doctor-info h2 {
+      margin: 0;
+    }
+    form label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    form input, form select, form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 8px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      outline: none;
+    }
+    .submit-btn {
+      margin-top: 20px;
+      padding: 12px;
+      width: 100%;
+      background: #0a3d62;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .submit-btn:hover {
+      background: #3c6382;
+    }
+    .success-msg {
+      display: none;
+      margin-top: 20px;
+      padding: 15px;
+      background: #dff9fb;
+      color: #130f40;
+      border-radius: 8px;
+      text-align: center;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Book Appointment - AAGMAN</h1>
+</header>
+
+<div class="container">
+  <div class="doctor-info" id="doctorInfo">
+    <!-- Doctor details injected here -->
+  </div>
+
+  <form id="appointmentForm">
+    <label for="patientName">Full Name</label>
+    <input type="text" id="patientName" required>
+
+    <label for="patientPhone">Phone Number</label>
+    <input type="tel" id="patientPhone" required>
+
+    <label for="date">Select Date</label>
+    <input type="date" id="date" required>
+
+    <label for="time">Select Time</label>
+    <select id="time" required>
+      <option value="">Choose Time</option>
+      <option>10:00 AM</option>
+      <option>11:00 AM</option>
+      <option>02:00 PM</option>
+      <option>04:00 PM</option>
+      <option>06:00 PM</option>
+    </select>
+
+    <label for="problem">Describe Your Problem</label>
+    <textarea id="problem" rows="4" required></textarea>
+
+    <button type="submit" class="submit-btn">Confirm Appointment</button>
+  </form>
+
+  <div class="success-msg" id="successMsg">
+    ✅ Appointment Confirmed! <br>
+    We have sent you details on your registered number.
+  </div>
+</div>
+
+<script>
+  // Doctor database (same as doctors.html)
+  const doctors = {
+    1: {name:"Dr. Ramesh Gupta", specialization:"Cardiologist", hospital:"Apollo Hospital", rating:4.8, experience:"10 years", img:"https://source.unsplash.com/200x200/?doctor"},
+    2: {name:"Dr. Neha Sharma", specialization:"Dermatologist", hospital:"Fortis Clinic", rating:4.6, experience:"8 years", img:"https://source.unsplash.com/200x200/?doctor,woman"},
+    3: {name:"Dr. Amit Singh", specialization:"General Physician", hospital:"AIIMS Delhi", rating:4.7, experience:"12 years", img:"https://source.unsplash.com/200x200/?doctor,stethoscope"},
+    4: {name:"Dr. Priya Verma", specialization:"Orthopedic", hospital:"Max Hospital", rating:4.5, experience:"7 years", img:"https://source.unsplash.com/200x200/?doctor,clinic"}
+  };
+
+  // Get doctor id from URL
+  const params = new URLSearchParams(window.location.search);
+  const docId = params.get("id");
+  const doctor = doctors[docId];
+
+  // Show doctor info
+  if(doctor){
+    document.getElementById("doctorInfo").innerHTML = `
+      <img src="${doctor.img}" alt="Doctor">
+      <div>
+        <h2>${doctor.name}</h2>
+        <p>${doctor.specialization} | ${doctor.hospital}</p>
+        <p>⭐ ${doctor.rating} | ${doctor.experience} experience</p>
+      </div>
+    `;
+  }
+
+  // Handle form
+  document.getElementById("appointmentForm").addEventListener("submit", function(e){
+    e.preventDefault();
+    document.getElementById("successMsg").style.display = "block";
+    document.getElementById("appointmentForm").reset();
+  });
+</script>
+
+</body>
+</html>
+
