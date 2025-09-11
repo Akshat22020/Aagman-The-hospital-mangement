@@ -19,13 +19,12 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background: linear-gradient(135deg, #c6cfce, #ededf1);
-      color: white;
+      background-color: aliceblue;
       transition: all 0.6s ease;
     }
 
     .login-container {
-      background: rgba(61, 154, 221, 0.1);
+        background: rgba(163, 192, 222, 0.1);
       padding: 2rem;
       border-radius: 20px;
       backdrop-filter: blur(10px);
@@ -59,8 +58,7 @@
       border: none;
       outline: none;
       border-radius: 8px;
-      background: rgba(0, 0, 0, 0.2);
-      color: white;
+      /* color: white; */
       font-size: 1rem;
     }
 
@@ -70,6 +68,7 @@
       left: 12px;
       transform: translateY(-50%);
       font-size: 0.9rem;
+      color: black;
       opacity: 0.4;
       pointer-events: none;
       transition: 0.3s ease;
@@ -86,35 +85,38 @@
     .btn {
       width: 100%;
       padding: 12px;
-      background: #4d58cb;
+      background: #1111c4;
       border: none;
       border-radius: 8px;
       font-size: 1rem;
       font-weight: bold;
       cursor: pointer;
       transition: 0.3s ease;
+      color: white;
     }
 
     .btn:hover {
-      background: #ffffff;
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(13, 5, 50, 0.5);
+      transform: translateY(-3px);
+      
+      box-shadow: 0 5px 15px rgba(255, 221, 87, 0.5);
     }
 
     .extra-links {
       margin-top: 1rem;
       font-size: 0.85rem;
+      #23337b
     }
 
     .extra-links a {
-      color: #000000;
+      color: #23337b;
       text-decoration: none;
-      transition: color 0.3s;
+      transition: color 0.5s;
     }
 
-    .extra-links a:hover {
-      color: #fff;
+    .extra-links a:hover{
+      color: #000;
     }
+   
 
     .error-message {
       margin-top: 10px;
@@ -146,13 +148,13 @@
         <label for="password">Password</label>
       </div>
 
-      <button type="submit" class="btn">Login</button>
+      <button type="submit" class="btn" >Login</button>
       <p class="error-message" id="errorMessage"></p>
     </form>
 
     <div class="extra-links">
       <a href="#">Forgot-Password?</a>
-      <br><br>
+      |
       <a href="loginpage.html">Go back?</a>
     </div>
   </div>
@@ -169,13 +171,12 @@
 
       if (doctorId === "" || password === "") {
         showError("Please enter your Doctor ID and Password!");
-      } else if (doctorId !== "doc123" || password !== "pass123") {
-        showError("Invalid credentials. Try again!");
-      } else {
-        errorMessage.style.display = "none";
-        alert("Doctor Login Successful 👨‍⚕️ Welcome!");
-        // redirect to doctor dashboard
+      } else if (doctorId == "doc123" || password == "pass123") {
+       
         window.location.href = "doctor-dashboard.html";
+      } else {
+        errorMessage.innerHTML = "Incorrect name or password";
+        
       }
     });
 

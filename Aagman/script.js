@@ -10,10 +10,11 @@ loginForm.addEventListener("submit", (e) => {
 
   if (username === "admin" && password === "1234") {
     localStorage.setItem("loggedIn", "true");
-    window.location.href = "user-dashboard.html";
+    window.location.href = "../index.html";
   } 
   else {
-    alert("Please enter correct username & password");
+    errorMessage.style.fontSize = "10px";
+    errorMessage.innerHTML = "Incorrect password or username";
   }
 });
 

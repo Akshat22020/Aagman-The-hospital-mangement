@@ -36,6 +36,11 @@ body {
   margin-bottom: 2rem;
   font-size: 0.9rem;
   opacity: 0.8;
+  
+}
+
+.subtitle a{
+  text-decoration: none;
 }
 
 .input-group {
