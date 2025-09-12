@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Health Locker</title>
+  <style>
+    body { font-family: Arial; background: #f1f2f6; padding: 30px; }
+    .box { background: rgba(255, 255, 255, 0.593); padding: 25px; border-radius: 12px; max-width: 500px; margin: auto; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+    input, button { padding: 10px; margin: 10px; border-radius: 8px; border: 1px solid #ccc; width: 90%; }
+    button { background: #2ea2cc; color: rgb(255, 255, 255); border: none; cursor: pointer; }
+    button:hover { background: #2746ae; }
+    ul { list-style: none; padding: 0; }
+    li { background: #ecf0f1; margin: 5px; padding: 10px; border-radius: 8px; }
+  </style>
+</head>
+<body>
+
+<div class="box">
+  <h2>YOUR HEALTH DOCUMENTS</h2>
+  <input type="text" id="aadhaar" placeholder="Enter Aadhaar Number">
+  <input type="file" id="fileInput">
+  <button onclick="uploadDoc()">Upload Document</button>
+  <ul id="docList"></ul>
+</div>
+
+<script>
+  let docs = [];
+
+  function uploadDoc() {
+    let aadhaar = document.getElementById("aadhaar").value;
+    let file = document.getElementById("fileInput").files[0];
+    if(!aadhaar || !file) { alert("Enter Aadhaar & File"); return; }
+
+    docs.push({aadhaar: aadhaar, name: file.name, url: URL.createObjectURL(file)});
+    renderDocs();
+  }
+
+  function renderDocs() {
+    const list = document.getElementById("docList");
+    list.innerHTML = "";
+    docs.forEach(d => {
+      let li = document.createElement("li");
+      li.innerHTML = `Aadhaar: <b>${d.aadhaar}</b> | File: ${d.name} <a href="${d.url}" download>⬇️ Download</a>`;
+      list.appendChild(li);
+    });
+  }
+</script>
+
+</body>
+</html>

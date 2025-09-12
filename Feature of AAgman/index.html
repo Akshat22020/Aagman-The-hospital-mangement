@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<<<<<<< HEAD
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AAGMAN - Find Doctors</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f9f9f9;
+    }
+    header {
+      background: #0a3d62;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+    .search-bar {
+      display: flex;
+      justify-content: center;
+      padding: 15px;
+      background: white;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .search-bar input, .search-bar select {
+      padding: 10px;
+      margin: 0 5px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      outline: none;
+    }
+    .doctor-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+    .doctor-card {
+      background: white;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      transition: 0.3s;
+    }
+    .doctor-card:hover {
+      transform: translateY(-5px);
+    }
+    .doctor-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+    .doctor-info {
+      margin-top: 10px;
+    }
+    .doctor-info h3 {
+      margin: 5px 0;
+    }
+    .book-btn {
+      display: inline-block;
+      padding: 10px 15px;
+      background: #0a3d62;
+      color: white;
+      border-radius: 5px;
+      margin-top: 10px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+    .book-btn:hover {
+      background: #3c6382;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Find Doctors - AAGMAN</h1>
+</header>
+
+<div class="search-bar">
+  <input type="text" id="searchName" placeholder="Search by name...">
+  <select id="specialization">
+    <option value="">Specialization</option>
+    <option>Cardiologist</option>
+    <option>Dermatologist</option>
+    <option>General Physician</option>
+    <option>Orthopedic</option>
+  </select>
+  <button onclick="searchDoctors()">Search</button>
+</div>
+
+<div class="doctor-list" id="doctorList">
+  <!-- Doctor cards will be injected by JS -->
+</div>
+
+<script>
+  const doctors = [
+    {id:1, name: "Dr. Ramesh Gupta", specialization: "Cardiologist", hospital: "Apollo Hospital", rating: 4.8, img:"https://source.unsplash.com/400x300/?doctor"},
+    {id:2, name: "Dr. Neha Sharma", specialization: "Dermatologist", hospital: "Fortis Clinic", rating: 4.6, img:"https://source.unsplash.com/400x300/?doctor,woman"},
+    {id:3, name: "Dr. Amit Singh", specialization: "General Physician", hospital: "AIIMS Delhi", rating: 4.7, img:"https://source.unsplash.com/400x300/?doctor,stethoscope"},
+    {id:4, name: "Dr. Priya Verma", specialization: "Orthopedic", hospital: "Max Hospital", rating: 4.5, img:"https://source.unsplash.com/400x300/?doctor,clinic"}
+  ];
+
+  function renderDoctors(list) {
+    document.getElementById("doctorList").innerHTML = list.map(doc => `
+      <div class="doctor-card">
+        <img src="${doc.img}" alt="Doctor">
+        <div class="doctor-info">
+          <h3>${doc.name}</h3>
+          <p>${doc.specialization} | ${doc.hospital}</p>
+          <p>⭐ ${doc.rating}</p>
+          <a href="book-appointment.html?id=${doc.id}" class="book-btn">Book Appointment</a>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function searchDoctors() {
+    const name = document.getElementById("searchName").value.toLowerCase();
+    const spec = document.getElementById("specialization").value;
+    const filtered = doctors.filter(doc =>
+      (doc.name.toLowerCase().includes(name)) &&
+      (spec === "" || doc.specialization === spec)
+    );
+    renderDoctors(filtered);
+  }
+
+  // Initial Load
+  renderDoctors(doctors);
+</script>
+
+</body>
+=======
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AAGMAN</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Forum&family=Handlee&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&family=Patrick+Hand&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/png" href="images/g1.png" />
+
+    
+  </head>
+  <body>
+    <!-- Splash Screen -->
+    <div id="splash">
+      <img src="images/g1.png" alt="Logo" />
+    </div>
+
+    <!-- Main Landing Content -->
+    <div id="main-content">
+      <nav id="navbar">
+        <img src="images/g1.png" alt="" id="logo" />
+        <li><a href="">Find Doctors</a></li>
+        <li><a href="">AI consultation</a></li>
+        <li><a href="">Appointment</a></li>
+      </nav>
+
+      <div id="login-signup">
+        <button onclick="window.location.href='aagman/loginpage.html'">
+          Login / Sign Up
+        </button>
+      </div>
+<<<<<<< HEAD
+
+      <div
+        id="user-profile"
+        style="display: none; justify-content: right; margin: -65px 20px 0 0"
+      >
+        <div class="profile-dropdown">
+          <img
+            src="images/user.png"
+            alt="User Profile"
+            style="width: 30px; height: 30px; border-radius: 50%; cursor: pointer"
+          />
+          <div class="dropdown-content">
+            <button onclick="logout()">Logout</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="search-box">
+        <input type="search" id="location" placeholder="Location" />
+        <input type="text" placeholder="Search for doctors" />
+      </div>
+
+      <section id="landing-page">
+        <div id="forward-btns">
+          <div class="landing-btn">
+            <img src="images/doctor.png" alt="" />
+            <button>Book a demo</button>
+          </div>
+          <div class="landing-btn">
+            <img src="images/try.jpeg" alt="" />
+            <button>Check your Queue</button>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      // Show landing content after splash
+      setTimeout(() => {
+        document.getElementById("splash").style.display = "none";
+        document.getElementById("main-content").style.display = "block";
+      }, 2000);
+
+      // Existing login logic
+      window.onload = function () {
+        if (localStorage.getItem("loggedIn") === "true") {
+          document.getElementById("login-signup").style.display = "none";
+          document.getElementById("user-profile").style.display = "flex";
+        }
+      };
+      function logout() {
+        localStorage.removeItem("loggedIn");
+        document.getElementById("login-signup").style.display = "flex";
+        document.getElementById("user-profile").style.display = "none";
+      }
+    </script>
+=======
+    </section>
+  
+>>>>>>> 467122d0ef2978d2b161dfb4a5571fe464799cad
+  </body>
+>>>>>>> 96169ededd7e546a91f8f3cca299a824c54d25ee
+</html>

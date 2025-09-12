@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Home Visit Scheduling - Aagman Project</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #34495e;
+            font-weight: bold;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #dcdcdc;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        button {
+            width: 100%;
+            background-color: #3498db;
+            color: #fff;
+            padding: 14px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        #responseMsg {
+            margin-top: 15px;
+            text-align: center;
+            font-weight: bold;
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>🩺 Home Visit Scheduling</h1>
+
+        <form id="visitForm">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter your full name" required />
+
+            <label for="phone">Phone Number</label>
+            <input type="text" id="phone" name="phone" placeholder="Enter your contact number" required />
+
+            <label for="address">Address</label>
+            <textarea id="address" name="address" rows="3" placeholder="Your full address" required></textarea>
+
+            <label for="symptoms">Describe Your Symptoms</label>
+            <textarea id="symptoms" name="symptoms" rows="3" placeholder="E.g., Fever, cough, body pain..." required></textarea>
+
+            <button type="submit">✅ Request Visit</button>
+        </form>
+
+        <p id="responseMsg"></p>
+    </div>
+
+    <script>
+        document.getElementById('visitForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const data = {
+                name: document.getElementById('name').value,
+                phone: document.getElementById('phone').value,
+                address: document.getElementById('address').value,
+                symptoms: document.getElementById('symptoms').value
+            };
+
+            const res = await fetch('http://localhost:3000/request-visit', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+
+            const result = await res.json();
+            document.getElementById('responseMsg').innerText = result.message;
+        });
+    </script>
+</body>
+
+</html>

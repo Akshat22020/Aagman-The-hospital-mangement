@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AAGMAN - Symptom Checker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f4f6f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      max-width: 500px;
+      width: 90%;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    h1 {
+      color: #0a3d62;
+    }
+    input, button {
+      width: 90%;
+      padding: 12px;
+      margin-top: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      outline: none;
+      font-size: 16px;
+    }
+    button {
+      background: #0a3d62;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #3c6382;
+    }
+    .result {
+      margin-top: 20px;
+      padding: 15px;
+      background: #dff9fb;
+      border-radius: 8px;
+      display: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>🤖 AI Symptom Checker</h1>
+  <p>Enter your symptom to get specialist suggestion:</p>
+  <input type="text" id="symptom" placeholder="e.g. Fever, Chest Pain, Skin Rash">
+  <button onclick="checkSymptom()">Check</button>
+  <div class="result" id="resultBox"></div>
+</div>
+
+<script>
+  function checkSymptom() {
+    const symptom = document.getElementById("symptom").value.toLowerCase();
+    let specialist = "General Physician";
+
+    if(symptom.includes("heart") || symptom.includes("chest pain") || symptom.includes("bp")){
+      specialist = "Cardiologist";
+    } 
+    else if(symptom.includes("skin") || symptom.includes("rash") || symptom.includes("allergy")){
+      specialist = "Dermatologist";
+    }
+    else if(symptom.includes("fever") || symptom.includes("cold") || symptom.includes("cough")){
+      specialist = "General Physician";
+    }
+    else if(symptom.includes("bone") || symptom.includes("joint") || symptom.includes("fracture")){
+      specialist = "Orthopedic";
+    }
+    else if(symptom.includes("stomach") || symptom.includes("digest") || symptom.includes("abdomen")){
+      specialist = "Gastroenterologist";
+    }
+    else if(symptom.includes("headache") || symptom.includes("migraine") || symptom.includes("brain")){
+      specialist = "Neurologist";
+    }
+
+    const resultBox = document.getElementById("resultBox");
+    resultBox.style.display = "block";
+    resultBox.innerHTML = `✅ Based on your symptom, we recommend consulting a <b>${specialist}</b>.`;
+  }
+</script>
+
+</body>
+</html>

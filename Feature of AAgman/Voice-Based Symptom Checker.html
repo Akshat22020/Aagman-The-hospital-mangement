@@ -1,0 +1,182 @@
+<!-- save as sms-kiosk.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AAGMAN Helpline — SMS Kiosk</title>
+  <style>
+    :root{
+      --primary:#1e90ff;
+      --accent:#0652DD;
+      --bg:#f8fbff;
+      --card:#ffffff;
+      --ok:#2ecc71;
+    }
+    body{
+      margin:0;
+      font-family: "Segoe UI", Roboto, Arial;
+      background:var(--bg);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      height:100vh;
+    }
+    .app{
+      width:420px;
+      border-radius:14px;
+      padding:22px;
+      background:var(--card);
+      box-shadow: 0 10px 30px rgba(15,30,50,0.08);
+    }
+    h1{ margin:0 0 8px; color:var(--primary); font-size:20px; }
+    p.sub{ margin:0 0 14px; color:#333; opacity:0.8; }
+    .big-input{
+      display:flex;
+      gap:8px;
+    }
+    .code{
+      flex:1;
+      padding:14px;
+      font-size:18px;
+      border-radius:10px;
+      border:1px solid #dbe7ff;
+      outline:none;
+    }
+    .send-btn{
+      background:var(--primary);
+      color:white;
+      border:none;
+      padding:12px 14px;
+      border-radius:10px;
+      font-weight:700;
+      cursor:pointer;
+    }
+    .preset {
+      margin-top:12px;
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+    .preset button{
+      padding:10px 12px;
+      background:#f1f7ff;
+      border:1px solid #e6f0ff;
+      border-radius:10px;
+      cursor:pointer;
+      font-weight:600;
+    }
+    .log{
+      margin-top:16px;
+      background:#fbfdff;
+      border-radius:10px;
+      padding:12px;
+      min-height:110px;
+      max-height:220px;
+      overflow:auto;
+      border:1px solid #eef6ff;
+    }
+    .log .item{ margin-bottom:10px; }
+    .remote-note{ margin-top:10px; font-size:13px; color:#666; }
+    .sim-btn{ margin-top:12px; display:flex; gap:8px; }
+    .sim-btn button{ flex:1; padding:10px; border-radius:10px; border:none; cursor:pointer; font-weight:700; }
+    .sim-btn .sms { background:var(--accent); color:white; }
+    .sim-btn .call { background:#ff7675; color:white; }
+    .small { font-size:13px; color:#555; margin-top:8px; }
+    .ok { color:var(--ok); font-weight:700; }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <h1>AAGMAN Helpline (Kiosk)</h1>
+    <p class="sub">Type short SMS code like <b>SYM FEVER</b> or choose a button. AAGMAN will reply with doctor suggestion & callback.</p>
+
+    <div class="big-input">
+      <input id="codeInput" class="code" placeholder="Enter SMS code e.g. SYM FEVER" />
+      <button class="send-btn" onclick="sendSMS()">Send</button>
+    </div>
+
+    <div class="preset">
+      <button onclick="setCode('SYM FEVER')">SYM FEVER</button>
+      <button onclick="setCode('SYM CHEST')">SYM CHEST</button>
+      <button onclick="setCode('SYM SKIN')">SYM SKIN</button>
+      <button onclick="setCode('SYM STOMACH')">SYM STOMACH</button>
+      <button onclick="setCode('SYM HEAD')">SYM HEAD</button>
+    </div>
+
+    <div class="sim-btn">
+      <button class="sms" onclick="simulateInbound('SYM FEVER')">Simulate Inbound SMS</button>
+      <button class="call" onclick="simulateCall()">Simulate Incoming Call</button>
+    </div>
+
+    <div class="log" id="logArea">
+      <div class="item"><b>System log</b> — replies from AAGMAN will appear here.</div>
+    </div>
+
+    <div class="remote-note small">Tip: Deploy backend and set SMS provider webhook to <code>/sms-webhook</code>. For testing use <b>ngrok</b> to expose local server.</div>
+  </div>
+
+<script>
+  const logArea = document.getElementById('logArea');
+  function appendLog(txt, cls='') {
+    const d = document.createElement('div'); d.className='item';
+    d.innerHTML = txt;
+    if(cls) d.style.color = cls;
+    logArea.appendChild(d);
+    logArea.scrollTop = logArea.scrollHeight;
+  }
+
+  function setCode(v){ document.getElementById('codeInput').value = v; }
+
+  // Send SMS (simulated POST to backend)
+  async function sendSMS() {
+    const txt = document.getElementById('codeInput').value.trim();
+    if(!txt){ alert('Enter SMS code, e.g. SYM FEVER'); return; }
+    appendLog(`<b>You:</b> ${txt}`);
+    // demo: call backend endpoint (replace URL when you host)
+    try {
+      const resp = await fetch('/sms-webhook', {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({ From: '+911234567890', Body: txt })
+      });
+      const data = await resp.json();
+      appendLog(`<b>AAGMAN:</b> ${data.reply}`, '#2b8a3e');
+    } catch(e) {
+      // if backend not available, show simulated local reply
+      const local = localReply(txt);
+      appendLog(`<b>AAGMAN (local-sim):</b> ${local}`, '#2b8a3e');
+    }
+  }
+
+  // simulate inbound SMS (as if user texted helpline)
+  function simulateInbound(code) {
+    setCode(code);
+    appendLog(`<i>Simulating inbound SMS: ${code}</i>`, '#555');
+    sendSMS();
+  }
+
+  // simulate an incoming call (for low-literacy users, they press "call")
+  function simulateCall() {
+    appendLog(`<b>System:</b> Dialing helpline... Please answer when AAGMAN calls`, '#000');
+    setTimeout(()=> appendLog(`<b>AAGMAN:</b> We will connect a volunteer doctor. Press 1 to accept.`, '#2b8a3e'),1500);
+  }
+
+  // local fallback parser (same logic as backend)
+  function localReply(body) {
+    const t = body.toUpperCase();
+    let specialist = 'General Physician';
+    if(t.includes('CHEST')||t.includes('HEART')) specialist='Cardiologist';
+    else if(t.includes('FEVER')||t.includes('COLD')||t.includes('COUGH')) specialist='General Physician';
+    else if(t.includes('SKIN')||t.includes('RASH')) specialist='Dermatologist';
+    else if(t.includes('BONE')||t.includes('JOINT')) specialist='Orthopedic';
+    else if(t.includes('STOMACH')||t.includes('DIGE')) specialist='Gastroenterologist';
+    else if(t.includes('HEAD')||t.includes('MIGRA')) specialist='Neurologist';
+    return `Suggest ${specialist}. Reply YES to request callback.`;
+  }
+</script>
+</body>
+</html>
+
+
+
