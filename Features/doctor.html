@@ -150,7 +150,33 @@
 
   <div class="doctor-list" id="doctorList"></div>
 
-  <script>
+  <!-- Appointment Modal -->
+<div id="appointmentModal" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.6); justify-content:center; align-items:center;
+">
+  <div style="background:#fff; padding:20px; border-radius:10px; width:350px; position:relative;">
+    <span onclick="closeModal()" style="position:absolute; top:10px; right:15px; cursor:pointer; font-weight:bold;">✖</span>
+    
+    <h2 id="doctorName"></h2>
+    <p id="hospitalName" style="color:#555; margin-top:-8px; margin-bottom:18px;"></p>
+
+    <form>
+      <label>Patient Name</label><br>
+      <input type="text" required><br><br>
+
+      <label>Date</label><br>
+      <input type="date" required><br><br>
+
+      <label>Time</label><br>
+      <input type="time" required><br><br>
+
+      <button type="submit" id="appointment-submit" style="padding:8px 12px; background:#2a66ce; color:#fff; border:none; border-radius:6px; cursor:pointer;">Confirm Appointment</button>
+    </form>
+  </div>
+</div>
+
+  
+</body>
+<script>
     const doctors = [
       {id:1, name: "Dr. Ramesh Gupta", specialization: "Cardiologist", hospital: "Apollo Hospital", rating: 4.8, img: "images/doc1.jpg"},
       {id:2, name: "Dr. Neha Sharma", specialization: "Dermatologist", hospital: "Fortis Clinic", rating: 4.6, img: "images/doc5.jpg"},
@@ -191,14 +217,27 @@
     }
 
     function bookAppointment(id){
-      const doc = doctors.find(d => d.id === id);
-      if(!doc) return alert('Doctor not found');
-      
-      alert(`Booking appointment with ${doc.name} at ${doc.hospital}`);
-    }
+  const doc = doctors.find(d => d.id === id);
+  if(!doc) return alert('Doctor not found');
+  
+  // Set doctor and hospital name
+  document.getElementById('doctorName').innerText = `Appointment with ${doc.name}`;
+  document.getElementById('hospitalName').innerText = `Hospital: ${doc.hospital}`;
+  
+  // Show modal
+  document.getElementById('appointmentModal').style.display = 'flex';
+  document.getElementById("appointment-submit").addEventListener("click",()=>{
+  alert(`Appointment with ${doc.name} is successful.`)
+})
+}
+
+function closeModal(){
+  document.getElementById('appointmentModal').style.display = 'none';
+}
+
+
 
     // initial
     renderDoctors(doctors);
   </script>
-</body>
 </html>

@@ -33,8 +33,9 @@
         <button onclick="window.location.href='aagman/loginpage.html'">
           Login / Sign Up
         </button>
+        <button id="emergency-btn">🚨</button>
       </div>
-
+      
       <div
         id="user-profile"
         style="display: none; justify-content: right; margin: -65px 20px 0 0"
@@ -50,7 +51,7 @@
           </div>
         </div>
       </div>
-
+      
       <div id="search-box">
         <input type="search" id="location" placeholder="Location" style="width: 200px;" />
         <input type="text" placeholder="Search for doctors,clinics,hospitals etc." />
@@ -59,13 +60,18 @@
       <section id="landing-page">
         <div id="forward-btns">
           <div class="landing-btn">
-            <img src="images/maindoc.png" alt="" />
+            <img src="images/MAINDOC1.png" alt="" />
             <button onclick="window.location.href ='Features/doctor.html'">Find doctors near you</button>
           </div>
           <div class="landing-btn">
-            <img src="images/queuepep.png" alt="" />
-            <button style="padding: 14px 40px;">Check your Queue</button>
+            <img src="images/QUEUE.png" alt="" />
+            <button>Check your Queue</button>
           </div>
+          <div class="landing-btn">
+            <img src="images/vIDEO.png" alt="" />
+            <button >Video Consultation</button>
+          </div>
+          
         </div>
       </section>
 
@@ -125,6 +131,8 @@
             <a href="" style="margin-bottom: 4px;">Aagman Hospital Dashboard</a>
             <h5 style="margin-bottom: 2px;">For clinics</h5>
             <a href="" style="margin-bottom: 4px;">Aagman Clinic Dashboard</a>
+            <h5 style="margin-bottom: 2px;">For Diagnostic centres</h5>
+            <a href="" style="margin-bottom: 4px;">Aagman Diagnostic Dashboard</a>
           </div>
 
           <div class="link-container">
@@ -138,7 +146,7 @@
           <div class="link-container">
             <h5>Social</h5>
             <a href="">Facebook</a>
-            <a href="">X(Twitter)</a>
+            <a href="">X (Twitter)</a>
             <a href="">Instagram</a>
             <a href="">YouTube</a>
             <a href="">LinkedIn</a>
@@ -150,6 +158,7 @@
 
       </section>
       <footer id="aagman-footer">
+        <hr>
         <p>&copy; 2025 Team Aagman | All rights reserved.</p>
       </footer>
 
@@ -174,6 +183,7 @@
         document.getElementById("login-signup").style.display = "flex";
         document.getElementById("user-profile").style.display = "none";
       }
+      
     </script>
   </body>
 </html>

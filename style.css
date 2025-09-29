@@ -106,6 +106,7 @@ section{
     display: flex;
     justify-content: right;
     margin: -58px 20px 0 0;
+    gap: 20px;
 }
 
 #login-signup button{
@@ -116,7 +117,8 @@ section{
     font-weight: 550;
     border:none;
     border-radius: 11px;
-    transition: transform 0.7s ease
+    transition: transform 0.7s ease;
+    
 }
 
 #login-signup button:hover{
@@ -189,18 +191,13 @@ section{
     justify-content: center;
     align-items: center; 
     
-    gap: 100px;
+    gap: 50px;
     
 }
 
-#forward-btn{
-     display: flex;
-  justify-content: center;
-  gap: 100px; 
-  
-}
 
-.landing-btn{
+
+.landing-btn{    
     display: flex;
   flex-direction: column; 
   justify-content: center;
@@ -213,14 +210,16 @@ section{
 
 
 .landing-btn img{
-    width: 180px;
-  height: 180px;
+    width: 150px;
+  height: 150px;
   border-radius: 12px;
+
 }
 
 .landing-btn button{
+    margin-top: 10px;
     font-size: 12px;
-    padding: 14px 25px;
+    padding: 12px 12px;
     font-weight: 550;
     color: white;
     background-color: #19191c;
@@ -231,7 +230,22 @@ section{
 
 .landing-btn button:hover{
     cursor: pointer;
+} 
+
+#emergency-btn{
+    background: red; 
+    color: white; 
+    padding: 15px; 
+    border: none; 
+    border-radius: 8px; 
+    cursor: pointer;
+    transition: all 0.7s ease;
 }
+
+#emergency-btn:hover{
+    background-color: red;
+}
+ 
 
 #search-box{
     display: flex;
@@ -335,6 +349,10 @@ section{
     text-decoration: none;
     color: white;
     
+}
+
+.link-container a:hover{
+    text-decoration:underline;
 }
 
 #footer-logo{
